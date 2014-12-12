@@ -26,7 +26,7 @@ def analyze_grammar():
                 start = form.data['start']
                 if len(start) == 0:
                     start = None
-                automaton,warnings,errors = create_automaton(terminals,productions,start,form.data['type'])
+                automaton,warnings,errors,cyk = create_automaton(terminals,productions,start,form.data['type'])
                 if automaton:
                     if False:
                         automaton.first = dict((k, v) for k, v in automaton.first.items() if k in automaton.nonterminals)
