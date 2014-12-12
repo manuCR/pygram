@@ -31,7 +31,7 @@ def analyze_grammar():
                     if not cyk:
                         automaton.first = dict((k, v) for k, v in automaton.first.items() if k in automaton.nonterminals)
                         automaton.follow = dict((k, v) for k, v in automaton.follow.items() if k in automaton.nonterminals)
-                    return render_template('analyze_grammar.html', form=form, automaton=automaton,cyk=cyk, warnings=warnings)
+                    return render_template('analyze_grammar.html', form=form, automaton=automaton, cyk=cyk, warnings=warnings)
                 else:
                     form.productions.errors += errors
             except GrammarSyntaxError as e:
