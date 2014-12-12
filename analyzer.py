@@ -150,13 +150,8 @@ def create_automaton(terminals,productions,start=None,method='LALR'):
      
         if not grammar is None:
             if method not in ('SLR','LALR'):
-                if method not in('CYK'):
-                    errors.append('Unsupported parsing method: {0}'.format(method))
-                    GrammarParser.mutex.release()
-                else:
-                    #automaton = gramar to chomsky 
-                    automaton = ["S -> NP VP","NP -> DET N","NP -> NP PP","PP -> P NP","VP -> V NP","VP -> VP PP","DET -> the","NP -> I","N -> man","N -> telescope","P -> with","V -> saw","N -> cat","N -> dog","N -> pig","N -> hill","N -> park","N -> roof","P -> from","P -> on","P -> in"]
-                    cyk = True
+                errors.append('Unsupported parsing method: {0}'.format(method))
+                GrammarParser.mutex.release()
             else:
                 try:
                     lr = modply.LRGeneratedTable(grammar,method)
