@@ -180,7 +180,7 @@ def create_automaton(terminals,productions,start=None,method='LALR'):
         if len(errors) > 0:
             automaton = None
 
-        return automaton,warnings,errors,cyk
+        return automaton,warnings,errors
 
     else:
         raise ServerTimeOut('Server busy: please try again in a few seconds.')
