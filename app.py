@@ -26,11 +26,12 @@ def analyze_grammar():
                 start = form.data['start']
                 if len(start) == 0:
                     start = None
-                automaton,warnings,errors = create_automaton(terminals,productions,start,form.data['type'])
+                automaton,warnings,errors,CYK = create_automaton(terminals,productions,start,form.data['type'])
                 if automaton:
-                    automaton.first = dict((k, v) for k, v in automaton.first.items() if k in automaton.nonterminals)
-                    automaton.follow = dict((k, v) for k, v in automaton.follow.items() if k in automaton.nonterminals)
-                    return render_template('analyze_grammar.html', form=form, automaton=automaton, warnings=warnings)
+					if(!CYK):
+						automaton.first = dict((k, v) for k, v in automaton.first.items() if k in automaton.nonterminals)
+						automaton.follow = dict((k, v) for k, v in automaton.follow.items() if k in automaton.nonterminals)
+                    return render_template('analyze_grammar.html', form=form, automaton=automaton,CYK=CYK, warnings=warnings)
                 else:
                     form.productions.errors += errors
             except GrammarSyntaxError as e:
