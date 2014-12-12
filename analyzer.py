@@ -143,7 +143,8 @@ def create_automaton(terminals,productions,start=None,method='LALR'):
     # because the analysis of the grammar is made by PLYs machinery,
     # so we need to protect ply.yacc state.
 
-    if GrammarParser.mutex.acquire(True,15): 
+    if GrammarParser.mutex.acquire(True,15):
+        cyk = None 
  
         grammar,warnings,errors = create_grammar(terminals,productions,start)
      
@@ -174,7 +175,7 @@ def create_automaton(terminals,productions,start=None,method='LALR'):
         if len(errors) > 0:
             automaton = None
 
-        return automaton,warnings,errors
+        return automaton,warnings,errors,cyk
 
     else:
         raise ServerTimeOut('Server busy: please try again in a few seconds.')
