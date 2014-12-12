@@ -143,7 +143,7 @@ def create_automaton(terminals,productions,start=None,method='LALR'):
     # because the analysis of the grammar is made by PLYs machinery,
     # so we need to protect ply.yacc state.
 
-    if GrammarParser.mutex.acquire(True,150): 
+    if GrammarParser.mutex.acquire(True,15): 
         cyk = False
  
         grammar,warnings,errors = create_grammar(terminals,productions,start)
