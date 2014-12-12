@@ -144,7 +144,7 @@ def create_automaton(terminals,productions,start=None,method='LALR'):
     # so we need to protect ply.yacc state.
 
     if GrammarParser.mutex.acquire(True,15): 
-		cyk = False
+        cyk = False
  
         grammar,warnings,errors = create_grammar(terminals,productions,start)
      
