@@ -138,11 +138,10 @@ def create_automaton(terminals,productions,start=None,method='LALR'):
      parsing table from which the automaton is
      extracted.
     '''
-
+    cyk = False
     # We're using the GrammarParser.mutex static variable in this context
     # because the analysis of the grammar is made by PLYs machinery,
     # so we need to protect ply.yacc state.
-    cyk = False
     if GrammarParser.mutex.acquire(True,15): 
  
         grammar,warnings,errors = create_grammar(terminals,productions,start)
